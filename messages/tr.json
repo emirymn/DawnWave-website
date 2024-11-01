@@ -1,0 +1,173 @@
+{
+  "Home": {
+    "title": "DawnWave'e Hoş Geldiniz",
+    "about": "Oyun sektöründe yenilikçi bir bakış açısıyla, oyuncularımıza en unutulmaz deneyimleri sunmak için çalışıyoruz. Teknolojiyi ve yaratıcılığı birleştirerek, oyun dünyasında yeni dalgalar oluşturmayı amaçlıyoruz. Hayal gücünüzün sınırlarını zorlayacak oyunlar geliştirmek için buradayız",
+    "Donate": {
+      "title": "Destek Olun",
+      "text": "Bizi desteklemek ve projelerimize katkıda bulunmak için aşağıdaki bağlantılardan bağış yapabilirsiniz"
+    }
+  },
+  "Team": {
+    "Roles": {
+      "co-founder": "Kurucu-Ortak",
+      "employee": "Çalışan"
+    },
+    "Job": {
+      "Title": {
+        "3d artist": "3D Sanatçısı",
+        "2d artist": "2D Sanatçısı",
+        "developer": "Geliştiricisi",
+        "designer": "Tasarımcısı",
+        "software developer": "Yazılım Geliştiricisi",
+        "web developer": "Web Geliştiricisi",
+        "game developer": "Oyun Geliştiricisi",
+        "game designer": "Oyun Tasarımcısı"
+      },
+      "software": "Yazılım",
+      "web": "Web"
+    },
+    "wanted": "ARANIYOR"
+  },
+  "JoinUs": {
+    "title": "Ekip Arkadaşları Arıyoruz",
+    "Job": {
+      "Title": {
+        "3d artist": "3D Sanatçısı",
+        "2d artist": "2D Sanatçısı",
+        "software developer": "Software Geliştirici",
+        "web developer": "Web Geliştiricisi",
+        "game developer": "Oyun Geliştiricisi",
+        "game designer": "Oyun Tasarımcısı"
+      },
+      "Time": {
+        "fullTime": "Tam Zamanlı",
+        "partTime": "Yarı Zamanlı",
+        "hybrid": "Hibrit"
+      },
+      "Type": {
+        "freelance": "Serbest Çalışma",
+        "volunteer": "Gönüllü"
+      },
+      "content": "Wishes of Dawn oyunumuz da çalışmak üzere ekip arkadaşları arayışı içerisindeyiz. Bir kuluçka ekibi olan DawnWave olarak projemiz Wishes of Dawn ile yatırımcı arayışımız sürüyor. İş bulamadığı için portföy geliştiremeyen oyun sektörü çalışanları için önce gönüllü başlayıp şirketleşme sonrasında tam zamanlı bir personel olarak çalışacak iş arkadaşları arıyoruz"
+    },
+    "Button": {
+      "apply": "Başvur"
+    }
+  },
+  "Contact": {
+    "title": "Bize Ulaşın",
+    "Card": {
+      "Content": {
+        "Mail": {
+          "contact": "contact",
+          "domain": "dawnwave.com"
+        },
+        "phone": "(+90) 539 671 27 93",
+        "address": "Muallimköy Mah, Deniz Cad. No:143/8, 1.1.C1 Blok Zemin Kat Kapı No: Z01 | Gebze/Kocaeli"
+      },
+      "Description": {
+        "mail": "E-Posta",
+        "phone": "Telefon",
+        "address": "Adres"
+      }
+    },
+    "Form": {
+      "label": {
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "email": "E-Posta",
+        "subject": "Konu",
+        "message": "Mesaj"
+      },
+      "input-placeholder": {
+        "firstName": "Ad",
+        "lastName": "Soyad",
+        "email": "örnek@örnek.com",
+        "subject": "Konu",
+        "message": "Mesaj..."
+      },
+      "input-description": {
+        "firstName": "Adınız",
+        "lastName": "Soyadınız",
+        "email": "E-Posta adresiniz",
+        "subject": "E-Posta'nın konusu",
+        "message": "Mesajınız"
+      },
+      "Button": {
+        "submit": "GÖNDER",
+        "sending": "Gönderiliyor..."
+      }
+    }
+  },
+  "Subscribe": {
+    "title": "Abone Olun",
+    "description": "Yeni projelerimizden ve güncellemelerimizden haberdar olmak için bültenimize abone olun",
+    "Form": {
+      "label": {
+        "email": "E-Posta"
+      },
+      "input-placeholder": {
+        "email": "örnek@örnek.com"
+      },
+      "input-description": {
+        "email": "E-Posta adresiniz"
+      }
+    },
+    "Button": {
+      "subscribe": "Abone Ol",
+      "subscribing": "Abone Olunuyor"
+    }
+  },
+  "Navbar": {
+    "Link": {
+      "home": "Anasayfa",
+      "team": "Ekibimiz",
+      "joinUs": "Bize Katılın",
+      "contact": "İletişim"
+    }
+  },
+  "Footer": {
+    "Link": {
+      "home": "Anasayfa",
+      "team": "Ekibimiz",
+      "joinUs": "Bize Katılın",
+      "contact": "İletişim"
+    },
+    "Copyright": {
+      "copyright": "Telif Hakkı",
+      "allRightsReserved": "Tüm hakları saklıdır",
+      "year": "2024"
+    },
+    "Domain": {
+      "text": "dawnwave.com.tr",
+      "link": "https://dawnwave.com.tr"
+    },
+    "studio": "DawnWave",
+    "designBy": "Tarafından Tasarlandı",
+    "developedBy": "Tarafından Geliştirildi"
+  },
+  "Toast": {
+    "CardTeam": {
+      "Email": {
+        "Copy": {
+          "success": "E-Mail Adresi Kopyalandı",
+          "failed": "E-Mail Adresi Kopyalanamadı. Lütfen tekrar deneyin",
+          "nolink": "Link Mevcut Değil",
+          "noemail": "E-Mail Adresi Mevcut Değil"
+        }
+      }
+    },
+    "ContactForm": {
+      "Email": {
+        "success": "Mesajınız başarıyla gönderildi",
+        "failed": "Mesajınız gönderilemedi. Lütfen daha sonra tekrar deneyin"
+      }
+    },
+    "Subscribe": {
+      "Email": {
+        "success": "Başarı ile abone olundu",
+        "failed": "Abone Olunamadı. Lütfen daha sonra tekrar deneyin"
+      }
+    }
+  }
+}
