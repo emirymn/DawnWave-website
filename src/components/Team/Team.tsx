@@ -29,13 +29,13 @@ export function Team() {
                     </div>
 
                     <div className='flex flex-col 2xl:flex-row'>
-                        <div className="grid grid-cols-1 lg:flex lg:flex-row lg:justify-center gap-x-2 gap-y-4 2xl:gap-y-0">
+                        {/* <div className="grid grid-cols-1 lg:flex lg:flex-row lg:justify-center gap-x-2 gap-y-4 2xl:gap-y-0">
                             <EmployeeCard />
-                        </div>
+                        </div> */}
 
-                        <div className="2xl:hidden col-span-full py-4 lg:py-2 mx-1">
+                        {/* <div className="2xl:hidden col-span-full py-4 lg:py-2 mx-1">
                             <Separator />
-                        </div>
+                        </div> */}
 
                         <div className='grid grid-cols-1 lg:flex lg:justify-center lg:ml-2 gap-x-2 gap-y-4 2xl:gap-y-0'>
                             <WantedCard />
