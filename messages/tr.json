@@ -123,7 +123,9 @@
       "home": "Anasayfa",
       "team": "Ekibimiz",
       "joinUs": "Bize Katılın",
-      "contact": "İletişim"
+      "contact": "İletişim",
+      "gameServers": "Oyun Sunucularımız",
+      "cs2server": "Counter-Strike 2"
     }
   },
   "Footer": {
@@ -167,6 +169,13 @@
       "Email": {
         "success": "Başarı ile abone olundu",
         "failed": "Abone Olunamadı. Lütfen daha sonra tekrar deneyin"
+      }
+    },
+    "GameServers": {
+      "ServerIp": {
+        "success": "Server Ip Kopyalandı",
+        "failed": "Server Ip Kopyalanamadı. Lütfen tekrar deneyin",
+        "noip": "Ip Adresi Mevcut Değil"
       }
     }
   }

@@ -123,7 +123,9 @@
             "home": "Home",
             "team": "Team",
             "joinUs": "Join Us",
-            "contact": "Contact"
+            "contact": "Contact",
+            "gameServers": "Game Servers",
+            "cs2server": "Counter-Strike 2"
         }
     },
     "Footer": {
@@ -167,6 +169,13 @@
             "Email": {
                 "success": "Successfully Subscribed",
                 "failed": "Subscription Failed. Please try again later"
+            }
+        },
+        "GameServers": {
+            "ServerIp": {
+                "success": "Server Ip Successfully Copied",
+                "failed": "Server Ip Could Not Copy. Please try again",
+                "noip": "Ip Address Not Available"
             }
         }
     }

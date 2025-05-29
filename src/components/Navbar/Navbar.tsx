@@ -15,6 +15,7 @@ import { cn } from "@/lib/utils"
 // components ui
 import { ButtonNav } from "@/components/ui/button/ButtonNav";
 import { ScrollArea } from "@/components/shadcn/ui/scroll-area"
+import { toast } from 'sonner';
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -25,9 +26,31 @@ import {
     navigationMenuTriggerStyle,
 } from "@/components/shadcn/ui/navigation-menu"
 
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "@/components/shadcn/ui/dropdown-menu"
+
+import { ChevronDown, ChevronUp } from "lucide-react"
+
 // components
 import { LanguageChangeButton } from "@/components/LanguageChangeButton";
 import { Separator } from '@/components/shadcn/ui/separator';
+
+interface MenuItem {
+    label: string;
+    section?: string;
+    // If this item should render as a dropdown, supply a `children` array.
+    children?: {
+        label: string;
+        section: string;
+        serverIp: string;
+    }[];
+}
 
 interface NavbarProps {
     className?: string;
@@ -35,16 +58,24 @@ interface NavbarProps {
 
 export function Navbar({ className }: NavbarProps) {
     const t = useTranslations('Navbar');
+    const t2 = useTranslations("Toast");
 
-    const menuItems = [
+    const menuItems: MenuItem[] = [
         { label: t('Link.home'), section: 'Home' },
         { label: t('Link.team'), section: 'Team' },
         { label: t('Link.joinUs'), section: 'JoinUs' },
-        { label: t('Link.contact'), section: 'Contact' }
+        { label: t('Link.contact'), section: 'Contact' },
+        {
+            label: t('Link.gameServers'),
+            children: [
+                { label: t('Link.cs2server'), section: 'CS2Server', serverIp: 'connect 95.173.175.61' },
+            ]
+        },
     ];
 
     const [isNavbarOpen, setIsNavbarOpen] = useState(false);
     const [isButtonNavChecked, setIsButtonNavChecked] = useState(false);
+    const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
     const navbarRef = useRef<HTMLDivElement>(null);
 
     const toggleNavbar = () => {
@@ -53,10 +84,10 @@ export function Navbar({ className }: NavbarProps) {
     };
 
     const handleClickOutside = (event: MouseEvent) => {
-        // Check if the click is outside the navbar
         if (navbarRef.current && !navbarRef.current.contains(event.target as Node)) {
             setIsNavbarOpen(false);
             setIsButtonNavChecked(false);
+            setOpenSubmenu(null);
         }
     };
 
@@ -66,7 +97,6 @@ export function Navbar({ className }: NavbarProps) {
         } else {
             document.removeEventListener('click', handleClickOutside);
         }
-
         return () => {
             document.removeEventListener('click', handleClickOutside);
         };
@@ -79,24 +109,53 @@ export function Navbar({ className }: NavbarProps) {
         }
     };
 
-    const handleMenuClick = (event: React.MouseEvent) => {
-        event.stopPropagation();
-    };
-
     return (
         <>
-            <div className={`${className} hidden sm:block`} ref={navbarRef}>
+            <div className={`${className} hidden md:block`} ref={navbarRef}>
                 <div className='flex justify-between'>
                     <NavigationMenu>
                         <NavigationMenuList className="space-x-8">
                             {menuItems.map((item) => (
-                                <NavigationMenuItem className='cursor-pointer' key={item.section}>
-                                    <NavigationMenuLink
-                                        className={`hover:text-white hover:bg-transparent hover:text-accent text-xl ${navigationMenuTriggerStyle()}`}
-                                        onClick={() => scrollToSection(item.section)}
-                                    >
-                                        {item.label}
-                                    </NavigationMenuLink>
+                                <NavigationMenuItem className='cursor-pointer' key={item.label}>
+                                    {item.children ? (
+                                        <NavigationMenuLink
+                                            className={`hover:text-white hover:bg-transparent hover:text-accent text-xl ${navigationMenuTriggerStyle()}`}
+                                            onClick={() => scrollToSection(item.section ?? '')}
+                                        >
+                                            <DropdownMenu>
+                                                <DropdownMenuTrigger>
+                                                    {item.label}
+                                                </DropdownMenuTrigger>
+                                                <DropdownMenuContent className="dark bg-black border-slate-800 text-white">
+                                                    {item.children.map((child) => (
+                                                        <DropdownMenuItem
+                                                            key={child.section}
+                                                            onClick={() => {
+                                                                scrollToSection(child.section);
+                                                                navigator.clipboard.writeText(child.serverIp);
+                                                                if (child.serverIp.includes('.')) {
+                                                                    toast(t2('GameServers.ServerIp.success'));
+                                                                } else if (child.serverIp.includes('#')) {
+                                                                    toast(t2('GameServers.ServerIp.failed'));
+                                                                } else {
+                                                                    toast(t2('GameServers.ServerIp.noip'));
+                                                                }
+                                                            }}
+                                                        >
+                                                            {child.label}
+                                                        </DropdownMenuItem>
+                                                    ))}
+                                                </DropdownMenuContent>
+                                            </DropdownMenu>
+                                        </NavigationMenuLink>
+                                    ) : (
+                                        <NavigationMenuLink
+                                            className={`hover:text-white hover:bg-transparent hover:text-accent text-xl ${navigationMenuTriggerStyle()}`}
+                                            onClick={() => scrollToSection(item.section ?? '')}
+                                        >
+                                            {item.label}
+                                        </NavigationMenuLink>
+                                    )}
                                 </NavigationMenuItem>
                             ))}
                         </NavigationMenuList>
@@ -111,7 +170,7 @@ export function Navbar({ className }: NavbarProps) {
                 </div>
             </div>
 
-            <div className={`${className} flex flex-col sm:hidden justify-between`} ref={navbarRef}>
+            <div className={`${className} flex flex-col md:hidden justify-between`} ref={navbarRef}>
                 <div className='flex justify-between'>
                     <div className='p-1'>
                         <ButtonNav onClick={toggleNavbar} checked={isButtonNavChecked} />
@@ -122,52 +181,76 @@ export function Navbar({ className }: NavbarProps) {
                 {isNavbarOpen && (
                     <div>
                         <Separator className='my-4' />
-                        <ScrollArea className="flex w-full h-[120px] rounded-md">
-                            <div className="px-1 text-start space-y-1">
-                                {menuItems.map((item) => (
-                                    <div
-                                        onClick={() => scrollToSection(item.section)}
-                                        key={item.section}
-                                        className="cursor-pointer text-xl hover:text-accent"
-                                    >
-                                        {item.label}
-                                    </div>
-                                ))}
+                        <ScrollArea className="flex w-full h-[150px] rounded-md">
+                            <div className="px-1 text-start space-y-2">
+                                {menuItems.map((item) => {
+                                    if (item.children) {
+                                        const isOpen = openSubmenu === item.label;
+                                        return (
+                                            <div key={item.label}>
+                                                <div
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        setOpenSubmenu(isOpen ? null : item.label);
+                                                    }}
+                                                    className="flex items-center justify-between cursor-pointer text-xl hover:text-accent"
+                                                >
+                                                    <span>{item.label}</span>
+                                                    {isOpen ? (
+                                                        <ChevronUp className="h-5 w-5" />
+                                                    ) : (
+                                                        <ChevronDown className="h-5 w-5" />
+                                                    )}
+                                                </div>
+
+                                                {isOpen && (
+                                                    <div className="ml-4 mt-1 space-y-1">
+                                                        {item.children.map((child) => (
+                                                            <div
+                                                                key={child.section}
+                                                                onClick={(e) => {
+                                                                    e.stopPropagation();
+                                                                    scrollToSection(child.section);
+                                                                    navigator.clipboard.writeText(child.serverIp);
+                                                                    if (child.serverIp.includes('.')) {
+                                                                        toast(t2('GameServers.ServerIp.success'));
+                                                                    } else if (child.serverIp.includes('#')) {
+                                                                        toast(t2('GameServers.ServerIp.failed'));
+                                                                    } else {
+                                                                        toast(t2('GameServers.ServerIp.noip'));
+                                                                    }
+                                                                }}
+                                                                className="cursor-pointer text-lg hover:text-accent"
+                                                            >
+                                                                {child.label}
+                                                            </div>
+                                                        ))}
+                                                    </div>
+                                                )}
+                                            </div>
+                                        );
+                                    }
+
+                                    return (
+                                        <div
+                                            key={item.section}
+                                            onClick={() => {
+                                                scrollToSection(item.section ?? '');
+                                                setIsNavbarOpen(false);
+                                                setIsButtonNavChecked(false);
+                                                setOpenSubmenu(null);
+                                            }}
+                                            className="cursor-pointer text-xl hover:text-accent"
+                                        >
+                                            {item.label}
+                                        </div>
+                                    );
+                                })}
                             </div>
                         </ScrollArea>
                     </div>
-
                 )}
-
-
-
             </div>
         </>
     )
 }
-
-const ListItem = React.forwardRef<
-    React.ElementRef<"a">,
-    React.ComponentPropsWithoutRef<"a">
->(({ className, title, children, ...props }, ref) => {
-    return (
-        <li>
-            <NavigationMenuLink asChild>
-                <a
-                    ref={ref}
-                    className={cn(
-                        "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
-                        className
-                    )}
-                    {...props}
-                >
-                    <div className="text-sm font-medium leading-none">{title}</div>
-                    <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                        {children}
-                    </p>
-                </a>
-            </NavigationMenuLink>
-        </li>
-    )
-})
-ListItem.displayName = "ListItem";
