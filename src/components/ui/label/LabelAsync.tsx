@@ -37,9 +37,13 @@ export const LabelAsync: React.FC<LabelAsyncProps> = ({ text1, text1Class, text2
                 <div className={`${styles.LabelAsyncLoader} select-none`}>
                     <div className={`${styles.LabelAsyncWords} text-center`}>
                         <span className={`${styles.LabelAsyncWord} ${text3Class}`}>{text3}</span>
-                        <span className={`${styles.LabelAsyncWord} ${text4Class}`}>{text4}</span>
+                        <a href='https://keremketenci.com' target='_blank' rel='noopener noreferrer'>
+                            <span className={`${styles.LabelAsyncWord} ${text4Class}`}>{text4}</span>
+                        </a>
                         <span className={`${styles.LabelAsyncWord} ${text3Class}`}>{text3}</span>
-                        <span className={`${styles.LabelAsyncWord} ${text4Class}`}>{text4}</span>
+                        <a href='https://keremketenci.com' target='_blank' rel='noopener noreferrer'>
+                            <span className={`${styles.LabelAsyncWord} ${text4Class}`}>{text4}</span>
+                        </a>
                         <span className={`${styles.LabelAsyncWord} ${text3Class}`}>{text3}</span>
                     </div>
                 </div>
