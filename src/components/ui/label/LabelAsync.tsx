@@ -22,9 +22,13 @@ export const LabelAsync: React.FC<LabelAsyncProps> = ({ text1, text1Class, text2
                 <div className={`${styles.LabelAsyncLoader} select-none`}>
                     <div className={`${styles.LabelAsyncWords} text-center`}>
                         <span className={`${styles.LabelAsyncWord} ${text1Class}`}>{text1}</span>
-                        <span className={`${styles.LabelAsyncWord} ${text2Class}`}>{text2}</span>
+                        <a href='https://keremketenci.com' target='_blank' rel='noopener noreferrer'>
+                            <span className={`${styles.LabelAsyncWord} ${text2Class}`}>{text2}</span>
+                        </a>
                         <span className={`${styles.LabelAsyncWord} ${text1Class}`}>{text1}</span>
-                        <span className={`${styles.LabelAsyncWord} ${text2Class}`}>{text2}</span>
+                        <a href='https://keremketenci.com' target='_blank' rel='noopener noreferrer'>
+                            <span className={`${styles.LabelAsyncWord} ${text2Class}`}>{text2}</span>
+                        </a>
                         <span className={`${styles.LabelAsyncWord} ${text1Class}`}>{text1}</span>
                     </div>
                 </div>
@@ -41,6 +45,5 @@ export const LabelAsync: React.FC<LabelAsyncProps> = ({ text1, text1Class, text2
                 </div>
             </div>
         </div>
-
     );
 };
